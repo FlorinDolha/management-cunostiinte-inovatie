@@ -1,0 +1,1 @@
+# management-cunostiinte-inovatie
