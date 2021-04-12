@@ -1,0 +1,25 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Înregistrare</mat-card-title>
+      </mat-card-header>
+  
+      <form class="example-form" (ngSubmit)="onRegister()" #registerForm="ngForm">
+  
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput pattern="^[\w-\.]+@([\w-]+\.)+[\w-]+$" [(ngModel)]="user.email" name="email" autocomplete="off"
+            required>
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Parolă" type="password" [(ngModel)]="user.password" name="password" required>
+          </mat-form-field>
+        </mat-card-content>
+  
+        <button mat-raised-button color="primary" class="btn-block" type="submit" [disabled]="!registerForm.valid">Register</button>
+  
+      </form>
+    </mat-card>
+  </div>

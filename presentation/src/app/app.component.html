@@ -1,0 +1,15 @@
+<mat-toolbar color="primary" class="app-header" *ngIf="!loggedIn">
+  <span class="nav-tool-items">
+    <a mat-button routerLink="login" routerLinkActive="mat-raised-button">Autentificare</a>
+    <a mat-button routerLink="register" routerLinkActive="mat-raised-button">Înregistrare</a>
+  </span>
+</mat-toolbar>
+
+<router-outlet></router-outlet>
+
+<div *ngIf="loading" class="loading-container flex-content-center">
+  <mat-progress-spinner
+      color="accent"
+      mode="indeterminate">
+  </mat-progress-spinner>
+</div>
