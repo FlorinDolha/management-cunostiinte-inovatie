@@ -9,20 +9,20 @@ import { User } from 'src/app/models/User';
   providedIn: 'root'
 })
 export class LoginService {
-  private url: string;
+  private relativeUrl: string = "auth";
 
   constructor(private httpHelperService: HttpHelperService,
     private dataService: DataService) { }
 
   register(user: User) {
-    return this.httpHelperService.post<any>(this.url + "/register", user);
+    return this.httpHelperService.post<any>(this.relativeUrl + "/register", user);
   }
 
   login(email: string, password: string){
-    return this.httpHelperService.post<any>(this.url + "/login", {'email': email, 'password': password})
+    return this.httpHelperService.post<any>(this.relativeUrl + "/login", {'username': email, 'password': password})
                     .pipe(
                       tap(response => {
-                        localStorage.setItem("email", response.email);
+                        localStorage.setItem("username", response.email);
                         localStorage.setItem("token", response.token);
                         this.dataService.sendData(true);
                     }),
