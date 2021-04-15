@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginRequest } from 'src/app/models/LoginRequest';
 import { LoginService } from 'src/app/services/login/login.service';
 import { SettingsService } from 'src/app/services/settings/settings.service';
 
@@ -9,8 +10,11 @@ import { SettingsService } from 'src/app/services/settings/settings.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  email: string;
-  password: string;
+  user: LoginRequest = {
+    username: undefined,
+    password: undefined,
+    role: "user",
+  }
 
   constructor(private loginService: LoginService,
     private router: Router,
@@ -20,9 +24,9 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(){
-    this.loginService.login(this.email, this.password)
+    this.loginService.login(this.user)
                         .subscribe(response => {
-                          this.settingsService.setCredentials(response.email, response.token);
+                          this.settingsService.setCredentials(response.username, response.accessToken);
                           this.router.navigate(['/main']);
                         });
   }

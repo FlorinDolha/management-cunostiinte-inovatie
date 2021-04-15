@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "http://localhost:8080/backend/api",
+  apiUrl: "http://basic-app.westeurope.cloudapp.azure.com:8080/api",
 };

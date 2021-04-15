@@ -8,15 +8,14 @@
       <form class="example-form" (ngSubmit)="onLogin()" #loginForm="ngForm">
         <mat-card-content>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Email" [(ngModel)]="email" required name="email">
+            <input matInput placeholder="Email" [(ngModel)]="user.username" required name="email">
           </mat-form-field>
   
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Parolă" type="password" [(ngModel)]="password" required name="password">
+            <input matInput placeholder="Parolă" type="password" [(ngModel)]="user.password" required name="password">
           </mat-form-field>
         </mat-card-content>
         <button mat-raised-button color="primary" type="submit" btn-block [disabled]="!loginForm.valid">Log in</button>
       </form>
     </mat-card>
-  
 </div>

@@ -2,7 +2,8 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
+import { MainModule } from '../main/main.module';
 import { DataService } from '../services/data/data.service';
 import { SettingsService } from '../services/settings/settings.service';
 
@@ -15,7 +16,7 @@ export class TokenInterceptor implements HttpInterceptor {
     
     request = request.clone({
       setHeaders: {
-        token: `Bearer ${this.settingsService.getCredentials().token}`
+        Authorization: `Bearer ${this.settingsService.getCredentials().accessToken}`
       }
     });
     return next.handle(request).pipe(

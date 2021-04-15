@@ -32,14 +32,14 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
+      useClass: LoadingInterceptor,
       multi: true
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: LoadingInterceptor,
+      useClass: TokenInterceptor,
       multi: true
-    }
+    },
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

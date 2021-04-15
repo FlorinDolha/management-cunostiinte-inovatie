@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/User';
+import { SignUpRequest } from 'src/app/models/SignUpRequest';
 import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
@@ -9,8 +9,8 @@ import { LoginService } from 'src/app/services/login/login.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  public user: User = {
-    email: undefined,
+  public user: SignUpRequest = {
+    username: undefined,
     password: undefined,
   };
 

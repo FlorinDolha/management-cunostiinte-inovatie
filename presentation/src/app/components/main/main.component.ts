@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data/data.service';
+import { HttpHelperService } from 'src/app/services/httpHelper/http-helper.service';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private httpHelperService: HttpHelperService,
+    private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.httpHelperService.get("main").subscribe(
+      _ => this.dataService.sendData(true)
+    );
   }
 
 }

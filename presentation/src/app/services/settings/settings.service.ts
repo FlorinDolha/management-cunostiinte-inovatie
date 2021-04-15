@@ -7,14 +7,14 @@ export class SettingsService {
   
   constructor() { }
 
-  public setCredentials(email: string, token: string){
-    localStorage.setItem('email', email);
-    localStorage.setItem('token', token);
+  public setCredentials(username: string, jwt: string){
+    localStorage.setItem('username', username);
+    localStorage.setItem('accessToken', jwt);
   }
   public getCredentials() {
-    var email = localStorage.getItem('email');
-    var token = localStorage.getItem('token');
+    var username = localStorage.getItem('username');
+    var jwt = localStorage.getItem('accessToken');
     
-    return { 'email': email, 'token': token };
+    return { 'username': username, 'accessToken': jwt };
   }
 }

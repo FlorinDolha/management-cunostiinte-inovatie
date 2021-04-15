@@ -3,27 +3,28 @@ import { HttpHelperService } from '../httpHelper/http-helper.service';
 import { throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { DataService } from '../data/data.service';
-import { User } from 'src/app/models/User';
+import { SignUpRequest } from 'src/app/models/SignUpRequest';
+import { LoginRequest } from 'src/app/models/LoginRequest';
+import { SettingsService } from '../settings/settings.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private relativeUrl: string = "auth";
+  private endpointRelativeUrl: string = "auth";
 
   constructor(private httpHelperService: HttpHelperService,
-    private dataService: DataService) { }
+    private dataService: DataService,
+    private settingsService: SettingsService) { }
 
-  register(user: User) {
-    return this.httpHelperService.post<any>(this.relativeUrl + "/register", user);
+  register(user: SignUpRequest) {
+    return this.httpHelperService.post<any>(this.endpointRelativeUrl + "/signup", user);
   }
 
-  login(email: string, password: string){
-    return this.httpHelperService.post<any>(this.relativeUrl + "/login", {'username': email, 'password': password})
+  login(user: LoginRequest){
+    return this.httpHelperService.post<any>(this.endpointRelativeUrl + "/signin", user)
                     .pipe(
                       tap(response => {
-                        localStorage.setItem("username", response.email);
-                        localStorage.setItem("token", response.token);
                         this.dataService.sendData(true);
                     }),
                       catchError(errorResponse => {
