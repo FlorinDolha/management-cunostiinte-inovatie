@@ -7,11 +7,13 @@ import { AngularMaterialModule } from '../angular-material.module';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../interceptors/token.interceptor';
+import { ChatComponent } from '../components/chat/chat.component';
 
 
 @NgModule({
   declarations: [
     MainComponent,
+    ChatComponent,
   ],
   imports: [
     CommonModule,
