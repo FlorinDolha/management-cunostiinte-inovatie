@@ -1,6 +1,7 @@
 package com.server.side.ii.authentification;
 
 
+import com.github.javafaker.Faker;
 import com.server.side.ii.authentification.model.User;
 import com.server.side.ii.authentification.model.request.Login;
 import com.server.side.ii.authentification.model.request.SignUp;
@@ -57,10 +58,11 @@ public class AuthApi {
             return new ResponseEntity<>(new ResponseMessage("Fail -> Email is already in use!"),
                     HttpStatus.BAD_REQUEST);
         }
-
+        Faker faker=new Faker();
         // Creating user's account
         User user = new User( signUpRequest.getUsername(),
-                encoder.encode(signUpRequest.getPassword()));
+                encoder.encode(signUpRequest.getPassword()),
+                        faker.funnyName().name());
 
         userRepository.save(user);
 
