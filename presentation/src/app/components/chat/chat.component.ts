@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { MessageDto } from 'src/app/models/MessageDto';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { SettingsService } from 'src/app/services/settings/settings.service';
@@ -9,21 +10,23 @@ import { SettingsService } from 'src/app/services/settings/settings.service';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-
   constructor(public chatService: ChatService,
-    private settingsService: SettingsService) {}
+    private settingsService: SettingsService) {
+      
+    }
 
   ngOnInit(): void {
-    this.chatService.retrieveMappedObject().subscribe( (receivedObj: MessageDto) => { this.addToInbox(receivedObj);});  // calls the service method to get the new messages sent
+    if (this.chatService.event){
+      this.chatService.event.unsubscribe();
+    }
+    this.chatService.event = this.chatService.retrieveMappedObject().subscribe( (receivedObj: MessageDto) => { this.addToInbox(receivedObj);});  // calls the service method to get the new messages sent
   }
 
-  msgDto: MessageDto = new MessageDto();
-
   send(): void {
-    if(this.msgDto) {
-      this.msgDto.user = this.settingsService.getCredentials().username;
-      this.chatService.broadcastMessage(this.msgDto);
-      this.msgDto = new MessageDto();
+    if(this.chatService.msgDto) {
+      this.chatService.msgDto.user = this.settingsService.getCredentials().username;
+      this.chatService.broadcastMessage(this.chatService.msgDto);
+      this.chatService.msgDto.msgText = "";
     }
   }
 

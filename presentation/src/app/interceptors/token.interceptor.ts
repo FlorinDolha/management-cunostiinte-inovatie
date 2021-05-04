@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { MainModule } from '../main/main.module';
 import { DataService } from '../services/data/data.service';
 import { SettingsService } from '../services/settings/settings.service';
 

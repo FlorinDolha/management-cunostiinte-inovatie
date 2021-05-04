@@ -35,7 +35,7 @@ namespace Public_Chat.Api
                 builder =>
                 {
                     builder.AllowAnyMethod().AllowAnyHeader()
-                           .WithOrigins("https://basic-app.westeurope.cloudapp.azure.com").AllowCredentials();
+                           .WithOrigins("http://localhost:4200").AllowCredentials();
                 }
             ));
             services.AddSwaggerGen(c =>
@@ -49,6 +49,11 @@ namespace Public_Chat.Api
         {
             if (env.IsDevelopment())
             {
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                });
                 app.UseDeveloperExceptionPage();
             }
 
