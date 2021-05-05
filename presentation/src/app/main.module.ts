@@ -11,6 +11,8 @@ import { ChatComponent } from './components/chat/chat.component';
 import { UserTypeComponent } from './components/modals/user-type/user-type.component';
 import { LeadershipComponent } from './components/leadership/leadership.component';
 import { QuizModalComponent } from './components/modals/quiz-modal/quiz-modal.component';
+import { QuizComponent } from './components/quiz/quiz.component';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { QuizModalComponent } from './components/modals/quiz-modal/quiz-modal.co
     ChatComponent,
     UserTypeComponent,
     QuizModalComponent,
+    QuizComponent,
+    LeaderboardComponent,
   ],
   imports: [
     CommonModule,

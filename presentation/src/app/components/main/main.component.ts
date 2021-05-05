@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data/data.service';
 import { HttpHelperService } from 'src/app/services/httpHelper/http-helper.service';
+import { SettingsService } from 'src/app/services/settings/settings.service';
 
 @Component({
   selector: 'app-main',
@@ -11,11 +12,15 @@ export class MainComponent implements OnInit {
   sections: any[] = [];
 
   constructor(private httpHelperService: HttpHelperService,
-    private dataService: DataService) { }
+    private dataService: DataService,
+    private settingsService: SettingsService) { }
 
   ngOnInit(): void {
-    this.httpHelperService.get("main").subscribe(
-      _ => this.dataService.sendData(true)
+    this.httpHelperService.getString(`main/nickname/${this.settingsService.getCredentials().username}`).subscribe(
+      response => {
+        localStorage.setItem('nickname', response);
+        this.dataService.sendData(true)
+      }
     );
   }
 }

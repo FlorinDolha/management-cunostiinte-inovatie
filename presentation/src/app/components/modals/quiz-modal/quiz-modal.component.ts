@@ -11,19 +11,17 @@ export class QuizModalComponent implements OnInit {
   showAnswers: Boolean = false;
   nextEnabled: Boolean = false;
   nextVisible: Boolean = false;
+  okEnabled: Boolean = true;
+  correctAnswers: number = 0;
   answer: any;
-  questions: any[] = [
-    {"question": "faaaaa?", "answers": [{"answer": "dsafda", "correct": false}, {"answer": "ggaga", "correct": true}]},
-    {"question": "fassaaaa?", "answers": [{"answer": "dsfafaafda", "correct": true}]},
-    {"question": "fagfagafaa?", "answers": [{"answer": "dsafafafda", "correct": true}]}
-  ];
+  questions: any[];
 
   constructor(private dialogRef: MatDialogRef<QuizModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any){
       this.questions = data.questions;
   }
   ngOnInit(): void {
-    this.dialogRef.updateSize('450px','450px');
+    this.dialogRef.updateSize('500px','450px');
     this.recheck();
   }
   
@@ -31,26 +29,21 @@ export class QuizModalComponent implements OnInit {
     this.index += 1;
     this.nextEnabled = false;
     this.showAnswers = false;
-    this.answer = undefined;
-    this.recheck();
-  }
-
-  prev(){
-    this.index -= 1;
-    this.nextEnabled = false;
-    this.showAnswers = false;
+    this.okEnabled = true;
     this.answer = undefined;
     this.recheck();
   }
 
   ok(){
+    this.correctAnswers += this.answer.correct === true ? 1 : 0;
     this.showAnswers = true;
     this.nextEnabled = true;
+    this.okEnabled = false;
     this.recheck();
 
     if (!this.nextVisible){
       setTimeout(() => {
-        this.dialogRef.close();
+        this.dialogRef.close(this.correctAnswers);
       }, 2000);
     }
   }

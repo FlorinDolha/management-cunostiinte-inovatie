@@ -25,7 +25,20 @@ export class HttpHelperService {
       url = `${this.apiUrl}/${relativeUrl}`;
     }
 
-    return this.httpClient.get<T>(url, { headers: this.httpOptions.headers, params: httpParams });
+    return this.httpClient.get<T>(url, { headers: this.httpOptions.headers, params: httpParams, });
+  }
+
+  public getString(relativeUrl: string, pathParam?: any, httpParams?: HttpParams) : Observable<string>{
+    var url: string;
+
+    if (pathParam) {
+      url = `${this.apiUrl}/${relativeUrl}/${pathParam}`;
+    }
+    else {
+      url = `${this.apiUrl}/${relativeUrl}`;
+    }
+
+    return this.httpClient.get(url, { headers: this.httpOptions.headers, responseType: 'text', params: httpParams });
   }
 
   public post<T>(relativeUrl: string, body: any) : Observable<T>{

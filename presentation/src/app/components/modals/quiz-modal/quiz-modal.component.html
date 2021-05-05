@@ -3,11 +3,14 @@
   aria-labelledby="example-radio-group-label"
   class="example-radio-group"
   [(ngModel)]="answer">
-  <mat-radio-button class="example-radio-button" *ngFor="let answerinfo of questions[index].answers" [value]="answerinfo.answer">
+  <mat-radio-button [disabled]="!okEnabled" class="example-radio-button" *ngFor="let answerinfo of questions[index].answers" [value]="answerinfo">
     {{answerinfo.answer}}
     <mat-icon *ngIf="answerinfo.correct && showAnswers">check</mat-icon>
   </mat-radio-button>
 </mat-radio-group>
 
-<button mat-raised-button color="primary" (click)="ok()" [disabled]="!answer"> Ok </button>
+<button mat-raised-button color="primary" (click)="ok()" [disabled]="!answer || !okEnabled"> Ok </button>
 <button mat-raised-button color="primary" (click)="next()" *ngIf="nextVisible" [disabled]="!nextEnabled"> Next </button>
+<br>
+<br>
+<mat-label style="color: green;" *ngIf="!okEnabled && !nextVisible">Ai obținut {{correctAnswers}} puncte</mat-label>
