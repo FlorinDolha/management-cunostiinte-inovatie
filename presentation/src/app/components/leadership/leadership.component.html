@@ -1,0 +1,20 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <p>CAPITOLE</p>
+      <div class="stack">
+        <a mat-raised-button routerLink="leadership-introduction">Introducere în Leadership</a>
+        <a mat-raised-button routerLink="stiluri">Stiluri de Leadership</a>
+        <a mat-raised-button routerLink="gen">Gen și leadership</a>
+        <a mat-raised-button routerLink="cultura">Cultură și leadership</a>
+      </div>
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+      <button type="button" mat-raised-button color="accent" (click)="drawer.toggle()">
+        Cuprins
+      </button>
+
+      <router-outlet class="stack"></router-outlet>
+    </div>
+
+  </mat-drawer-container>

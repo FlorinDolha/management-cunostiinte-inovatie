@@ -8,16 +8,17 @@ import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { ChatComponent } from './components/chat/chat.component';
-import { SectionsComponent } from './components/sections/sections.component';
 import { UserTypeComponent } from './components/modals/user-type/user-type.component';
+import { LeadershipComponent } from './components/leadership/leadership.component';
+import { QuizModalComponent } from './components/modals/quiz-modal/quiz-modal.component';
 
 
 @NgModule({
   declarations: [
     MainComponent,
     ChatComponent,
-    SectionsComponent,
     UserTypeComponent,
+    QuizModalComponent,
   ],
   imports: [
     CommonModule,

@@ -30,18 +30,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.user)
                         .subscribe(response => {
                           this.settingsService.setCredentials(response.username, response.accessToken);
-                          this.openDialog().subscribe(result => {
-                            localStorage.setItem('level', result);
                             this.router.navigate(['/main']);
-                          });
                         });
-  }
-
-  openDialog() {
-    const dialogRef = this.dialog.open(UserTypeComponent, {
-      width: '250px',
-    });
-
-    return dialogRef.afterClosed();
   }
 }
