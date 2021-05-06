@@ -3,4 +3,5 @@ mat-list{
     justify-content: center;
     height: 80%;
     padding: 30px;
+    flex-flow: row wrap;
 }
