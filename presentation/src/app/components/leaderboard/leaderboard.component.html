@@ -1,5 +1,5 @@
 <mat-list>
     <mat-list-item mat-raised-button *ngFor="let user of board">
-        <a mat-raised-button> {{user.nickname}} - {{user.score}} </a>
+        <a mat-raised-button [class.highlight]="user.nickname === mynickname"> {{user.nickname}} - {{user.score}} </a>
     </mat-list-item>
 </mat-list>

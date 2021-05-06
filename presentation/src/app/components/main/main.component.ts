@@ -10,6 +10,8 @@ import { SettingsService } from 'src/app/services/settings/settings.service';
 })
 export class MainComponent implements OnInit {
   sections: any[] = [];
+  username: string;
+  nickname: string;
 
   constructor(private httpHelperService: HttpHelperService,
     private dataService: DataService,
@@ -19,6 +21,8 @@ export class MainComponent implements OnInit {
     this.httpHelperService.getString(`main/nickname/${this.settingsService.getCredentials().username}`).subscribe(
       response => {
         localStorage.setItem('nickname', response);
+        this.username = this.settingsService.getCredentials().username;
+        this.nickname = response;
         this.dataService.sendData(true)
       }
     );

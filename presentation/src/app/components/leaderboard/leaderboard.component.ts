@@ -7,10 +7,12 @@ import { HttpHelperService } from 'src/app/services/httpHelper/http-helper.servi
   styleUrls: ['./leaderboard.component.css']
 })
 export class LeaderboardComponent implements OnInit {
-  private board: any[];
+  public board: any[];
+  mynickname: string;
   constructor(private httpHelper: HttpHelperService) { }
 
   ngOnInit(): void {
+    this.mynickname = localStorage.getItem('nickname');
     this.httpHelper.get<any[]>("main/leaderboard").subscribe(
       response => {
         this.board = response;
