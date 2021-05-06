@@ -2,7 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import * as signalR from '@microsoft/signalr';          // import signalR
 import { HttpClient } from '@angular/common/http';
 import { MessageDto } from '../../models/MessageDto';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { HttpHelperService } from '../httpHelper/http-helper.service';
 
 @Injectable({
@@ -10,11 +10,14 @@ import { HttpHelperService } from '../httpHelper/http-helper.service';
 })
 export class ChatService {
   msgInboxArray: MessageDto[] = [];
+  msgDto: MessageDto = new MessageDto();
+  event: Subscription
 
-  private  connection: any = new signalR.HubConnectionBuilder().withUrl("https://localhost:5001/chatsocket")   // mapping to the chathub as in startup.cs
+  private  connection: any = new signalR.HubConnectionBuilder()
+                                         .withUrl("http://basic-app.westeurope.cloudapp.azure.com/chatapi/chatsocket")   // mapping to the chathub as in startup.cs
                                          .configureLogging(signalR.LogLevel.Information)
                                          .build();
-  readonly POST_URL = "https://localhost:5001/api/chat/send"
+  readonly POST_URL = "http://basic-app.westeurope.cloudapp.azure.com/chatapi/api/chat/send"
 
   private receivedMessageObject: MessageDto = new MessageDto();
   private sharedObj = new Subject<MessageDto>();
@@ -25,7 +28,6 @@ export class ChatService {
    .then(() => console.log('Connection started'))
    .catch(err => console.log('Error while starting connection: ' + err))            
   }
-
   private mapReceivedMessage(user: string, message: string): void {
     this.receivedMessageObject.user = user;
     this.receivedMessageObject.msgText = message;
@@ -33,6 +35,7 @@ export class ChatService {
  }
 
   public broadcastMessage(msgDto: any) {
+
     this.http.post(this.POST_URL, msgDto).subscribe(data => console.log(data));
   }
 
