@@ -164,3 +164,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .example-radio-button {
     margin: 5px;
   }
+
+  .mat-checkbox-layout{
+    white-space: normal !important;
+  }
+
+  .mat-checkbox-inner-container{
+    margin-top: 4px;
+  }

@@ -13,6 +13,10 @@ const routes: Routes = [
       { path: 'quiz', component: QuizComponent },
       { path: 'board', component: LeaderboardComponent },
       { path: 'leadership', loadChildren: () => import('./leadership/leadership.module').then(m => m.LeadershipModule) },
+      { path: 'management', loadChildren: () => import('./management/management.module').then(m => m.ManagementModule) },
+      { path: 'cultura-organizationala', 
+        loadChildren: () => import('./cultura-organizationala/cultura-organizationala.module').then(m => m.CulturaOrganizationalaModule) 
+      },
     ]},
 ];
 

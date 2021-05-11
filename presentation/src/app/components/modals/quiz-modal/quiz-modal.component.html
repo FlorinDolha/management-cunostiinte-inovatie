@@ -1,15 +1,28 @@
-<label id="example-radio-group-label">{{questions[index].question}}</label>
-<mat-radio-group
-  aria-labelledby="example-radio-group-label"
-  class="example-radio-group"
-  [(ngModel)]="answer">
-  <mat-radio-button [disabled]="!okEnabled" class="example-radio-button" *ngFor="let answerinfo of questions[index].answers" [value]="answerinfo">
-    {{answerinfo.answer}}
-    <mat-icon *ngIf="answerinfo.correct && showAnswers">check</mat-icon>
-  </mat-radio-button>
-</mat-radio-group>
+<label id="example-radio-group-label" class="wrap-text">{{questions[index].question}}</label>
+  <br>  
+  <mat-checkbox
+    [(ngModel)]="answer0"
+    [disabled]="!okEnabled">
+    {{ questions[index].answers[0].answer }}
+    <mat-icon *ngIf="questions[index].answers[0].correct && showAnswers">check</mat-icon>
+  </mat-checkbox>
+  <br>
+  <mat-checkbox
+    [(ngModel)]="answer1"
+    [disabled]="!okEnabled">
+    {{ questions[index].answers[1].answer }}
+    <mat-icon *ngIf="questions[index].answers[1].correct && showAnswers">check</mat-icon>
+  </mat-checkbox>
+  <br>
+  <mat-checkbox
+    [(ngModel)]="answer2"
+    [disabled]="!okEnabled">
+    {{ questions[index].answers[2].answer }}
+    <mat-icon *ngIf="questions[index].answers[2].correct && showAnswers">check</mat-icon>
+  </mat-checkbox>
+  <br>
 
-<button mat-raised-button color="primary" (click)="ok()" [disabled]="!answer || !okEnabled"> Ok </button>
+<button mat-raised-button color="primary" (click)="ok()" [disabled]="!okEnabled"> Ok </button>
 <button mat-raised-button color="primary" (click)="next()" *ngIf="nextVisible" [disabled]="!nextEnabled"> Next </button>
 <br>
 <br>

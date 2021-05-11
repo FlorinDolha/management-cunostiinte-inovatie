@@ -17,7 +17,12 @@ export class QuizComponent implements OnInit {
   ngOnInit(): void {
     this.questions = QUESTIONS.questions_cultura.concat(QUESTIONS.questions_gen)
                                                 .concat(QUESTIONS.questions_leadership_introduction)
-                                                .concat(QUESTIONS.questions_stiluri);
+                                                .concat(QUESTIONS.questions_stiluri)
+                                                .concat(QUESTIONS.questions_cultura_organizationala)
+                                                .concat(QUESTIONS.questions_introducere_km)
+                                                .concat(QUESTIONS.questions_management_cunostinte_inovatie)
+                                                .concat(QUESTIONS.questions_management_cunostinte_sisteme_informatice)
+                                                .concat(QUESTIONS.questions_valori_simboluri_comportamente)
 
     this.questions = this.shuffle(this.questions);
   }

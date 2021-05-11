@@ -13,7 +13,9 @@ export class QuizModalComponent implements OnInit {
   nextVisible: Boolean = false;
   okEnabled: Boolean = true;
   correctAnswers: number = 0;
-  answer: any;
+  answer0: any = false;
+  answer1: any = false;
+  answer2: any = false;
   questions: any[];
 
   constructor(private dialogRef: MatDialogRef<QuizModalComponent>,
@@ -21,7 +23,7 @@ export class QuizModalComponent implements OnInit {
       this.questions = data.questions;
   }
   ngOnInit(): void {
-    this.dialogRef.updateSize('500px','450px');
+    this.dialogRef.updateSize('750px','450px');
     this.recheck();
   }
   
@@ -30,12 +32,17 @@ export class QuizModalComponent implements OnInit {
     this.nextEnabled = false;
     this.showAnswers = false;
     this.okEnabled = true;
-    this.answer = undefined;
+    this.answer0 = false;
+    this.answer1 = false;
+    this.answer2 = false;
     this.recheck();
   }
 
   ok(){
-    this.correctAnswers += this.answer.correct === true ? 1 : 0;
+    this.correctAnswers += 
+      (this.answer0 === this.questions[this.index].answers[0].correct &&
+      this.answer1 === this.questions[this.index].answers[1].correct &&
+      this.answer2 === this.questions[this.index].answers[2].correct) ? 1 : 0;
     this.showAnswers = true;
     this.nextEnabled = true;
     this.okEnabled = false;

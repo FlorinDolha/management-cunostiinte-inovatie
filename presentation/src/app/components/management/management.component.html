@@ -1,0 +1,20 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <p>CAPITOLE</p>
+      <div class="stack">
+        <a mat-raised-button routerLink="introducere-km">Introducere în KM</a>
+        <a mat-raised-button routerLink="management-cunostinte-inovatie">Managementul Cunoștințelor și Inovația</a>
+        <a mat-raised-button routerLink="management-cunostinte-sisteme-informatice">Managementul cunoștințelor și sistemele informatice</a>
+        <a mat-raised-button routerLink="sustenabilitate-management-cunostinte">Sustenabilitatea și Managementul Cunoștințelor</a>
+      </div>
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+      <button type="button" mat-raised-button color="accent" (click)="drawer.toggle()">
+        Cuprins
+      </button>
+
+      <router-outlet class="stack"></router-outlet>
+    </div>
+
+</mat-drawer-container>
