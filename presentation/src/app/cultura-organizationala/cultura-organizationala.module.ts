@@ -5,7 +5,9 @@ import { CulturaOrganizationalaRoutingModule } from './cultura-organizationala-r
 import { CulturaOrganizationalaComponent } from '../components/cultura-organizationala/cultura-organizationala.component';
 import { CulturaOrganizationalaCap1Component } from '../components/cultura-organizationala-cap1/cultura-organizationala-cap1.component';
 import { ValoriSimboluriComportamenteComponent } from '../components/valori-simboluri-comportamente/valori-simboluri-comportamente.component';
-import { AngularMaterialModule } from '../angular-material.module';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 @NgModule({
@@ -13,7 +15,9 @@ import { AngularMaterialModule } from '../angular-material.module';
   imports: [
     CommonModule,
     CulturaOrganizationalaRoutingModule,
-    AngularMaterialModule
+    MatListModule,
+    MatButtonModule,
+    MatSidenavModule
   ]
 })
 export class CulturaOrganizationalaModule { }
